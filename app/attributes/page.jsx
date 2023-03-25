@@ -1,7 +1,11 @@
 'use client'
 import { useState, useEffect } from 'react'
 
+import { useRouter } from 'next/navigation';
+
 const SelectParams = ({inputData, setSelectedAttributes}) => {
+
+    const router = useRouter()
 
     const [dataKeys,setDataKeys] = useState([])
     const [selectedParamsCount, setSelectedParamsCount] = useState(0)
@@ -15,7 +19,7 @@ const SelectParams = ({inputData, setSelectedAttributes}) => {
 
         const keys = Object.keys(inputData[0])
         setDataKeys(keys)
-        // set false for all keys initially in selectedParams
+
         const obj = {}
         keys.forEach((key) => {
             obj[key] = false
@@ -67,6 +71,8 @@ const SelectParams = ({inputData, setSelectedAttributes}) => {
                 }
             }
             setSelectedAttributes(attributesSelected)
+
+            router.push('/chart')
 
         }}>Crunch out a plot🚀</button>
     </div>
