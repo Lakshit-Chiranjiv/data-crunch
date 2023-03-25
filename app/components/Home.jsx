@@ -8,6 +8,7 @@ import SelectParams from './SelectParams'
 const Home = () => {
 
     const [jsonFileData,setJsonFileData] = useState([])
+    const [selectedAttributes,setSelectedAttributes] = useState([])
 
   return (
     <div className='p-8'>
@@ -17,9 +18,9 @@ const Home = () => {
         console.log(jsonFileData);
      }}>Check</button>
 
-     <Chart inputData={jsonFileData}/>
+     <Chart inputData={jsonFileData} selectedAttributes={selectedAttributes}/>
 
-     <SelectParams inputData={jsonFileData}/>
+     <SelectParams inputData={jsonFileData} setSelectedAttributes={setSelectedAttributes}/>
 
     </div>
   )
