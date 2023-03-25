@@ -1,5 +1,6 @@
 "use client" 
 import { useState } from "react"
+import { parse } from "papaparse"
 
 
 const DataInput = () => {
@@ -17,6 +18,11 @@ const DataInput = () => {
         <br />
         <button className="bg-green-400 rounded px-4 py-2" onClick={() =>{
           console.log(inputFile)
+          parse(inputFile, {
+              complete: function(results) {
+                console.log("Finished:", results.data);
+              }}
+            )
         }}>Crunch🚀</button>
     </div>
   )
