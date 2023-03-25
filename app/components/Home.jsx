@@ -14,9 +14,6 @@ const Home = () => {
     <div className='p-8 flex flex-col gap-4'>
      
       <DataInput setJsonFileData={setJsonFileData} />
-      <button onClick={() =>{
-          console.log(jsonFileData);
-      }}>Check</button>
 
       <SelectParams inputData={jsonFileData} setSelectedAttributes={setSelectedAttributes}/>
 
