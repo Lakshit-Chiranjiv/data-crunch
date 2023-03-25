@@ -4,7 +4,7 @@ import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
 import { useState, useEffect } from 'react'
 
-const Chart = ({inputData}) => {
+const Chart = ({inputData, selectedAttributes}) => {
 
     const [modifiedInputData,setModifiedInputData] = useState([])
     const [modifiedObjKeys,setModifiedObjKeys] = useState([])
@@ -17,7 +17,7 @@ const Chart = ({inputData}) => {
     
         const modifiedData = inputData.map((item) =>{
             let keys = Object.keys(item)
-            keys = keys.slice(0,2)
+            keys = selectedAttributes
             const obj = {
                 [keys[0]]: item[keys[0]],
                 [keys[1]]: item[keys[1]],
@@ -30,7 +30,7 @@ const Chart = ({inputData}) => {
     
         const keys = Object.keys(modifiedData[0])
         setModifiedObjKeys(keys)
-    }, [inputData])
+    }, [selectedAttributes])
 
 
   return (
