@@ -6,6 +6,8 @@ const SelectParams = ({inputData}) => {
     const [dataKeys,setDataKeys] = useState([])
     const [selectedParamsCount, setSelectedParamsCount] = useState(0)
     const [selectedParams, setSelectedParams] = useState({})
+    const [error, setError] = useState('')
+    const [showError, setShowError] = useState(false)
 
     useEffect(() => {
         if(inputData.length === 0) return
@@ -44,6 +46,10 @@ const SelectParams = ({inputData}) => {
                 })
             }
         </div>
+
+        <button className='px-4 py-2 rounded bg-green-400' onClick={() => {
+            if(selectedParamsCount === 0) return
+        }}>Crunch out a plot🚀</button>
     </div>
   )
 }
