@@ -1,23 +1,37 @@
+'use client'
 import React from 'react'
 import { Line } from "react-chartjs-2";
 import { Chart as ChartJS } from "chart.js/auto";
+import { useState, useEffect } from 'react'
 
 const Chart = ({inputData}) => {
 
-    inputData = inputData.slice(0,10)
+    const [modifiedInputData,setModifiedInputData] = useState([])
+    const [modifiedObjKeys,setModifiedObjKeys] = useState([])
+
+    useEffect(() => {
+
+        inputData = inputData.slice(0,10)
+
+        if(inputData.length === 0) return
     
-    const modifiedInputData = inputData.map((item) =>{
-        let keys = Object.keys(item)
-        keys = keys.slice(0,2)
-        const obj = {
-            [keys[0]]: item[keys[0]],
-            [keys[1]]: item[keys[1]],
-        }
-        
-        return obj
-    })
-    const modifiedObjKeys = Object.keys(modifiedInputData[0])
-    console.log(modifiedObjKeys,"modifiedObjKeys")
+        const modifiedData = inputData.map((item) =>{
+            let keys = Object.keys(item)
+            keys = keys.slice(0,2)
+            const obj = {
+                [keys[0]]: item[keys[0]],
+                [keys[1]]: item[keys[1]],
+            }
+            
+            return obj
+        })
+
+        setModifiedInputData(modifiedData)
+    
+        const keys = Object.keys(modifiedData[0])
+        setModifiedObjKeys(keys)
+    }, [inputData])
+
 
   return (
     <div className='max-w-[500px]'>
