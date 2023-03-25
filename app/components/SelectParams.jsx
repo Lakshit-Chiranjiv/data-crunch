@@ -1,7 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 
-const SelectParams = ({inputData}) => {
+const SelectParams = ({inputData, setSelectedAttributes}) => {
 
     const [dataKeys,setDataKeys] = useState([])
     const [selectedParamsCount, setSelectedParamsCount] = useState(0)
@@ -33,11 +33,12 @@ const SelectParams = ({inputData}) => {
                         <div key={key}>
                             <input type="checkbox" name={key} id={key} value={selectedParams[key]} onChange={
                                 (e) => {
-                                    if(selectedParamsCount >= 2) return
-                                    const obj = {...selectedParams}
-                                    obj[key] = e.target.checked
-                                    setSelectedParams(obj)
-                                    setSelectedParamsCount((prev) => prev + 1)
+                                    if(e.target.checked) {
+                                        setSelectedParamsCount(selectedParamsCount + 1)
+                                    } else {
+                                        setSelectedParamsCount(selectedParamsCount - 1)
+                                    }
+                                    setSelectedParams({...selectedParams, [key]: e.target.checked})
                                 }
                             } />
                             <label htmlFor={key}>{key}</label>
@@ -47,8 +48,25 @@ const SelectParams = ({inputData}) => {
             }
         </div>
 
+        {
+            showError && <p className='text-white bg-red-500 p-2 rounded my-2'>{error}</p>
+        }
+
         <button className='px-4 py-2 rounded bg-green-400' onClick={() => {
-            if(selectedParamsCount === 0) return
+            if(selectedParamsCount < 2 || selectedParamsCount > 2) {
+                setError('Select exactly 2 parameters')
+                setShowError(true)
+                return
+            }
+            setShowError(false)
+            const attributesSelected = []
+            for(let key in selectedParams) {
+                if(selectedParams[key]) {
+                    attributesSelected.push(key)
+                }
+            }
+            setSelectedAttributes(attributesSelected)
+
         }}>Crunch out a plot🚀</button>
     </div>
   )
