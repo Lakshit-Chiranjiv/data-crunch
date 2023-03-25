@@ -4,9 +4,13 @@ import { parse } from "papaparse"
 
 import { convertToJson } from "@/lib/convertToJson"
 
+import { useRouter } from 'next/navigation';
+
 const DataInput = ({setJsonFileData}) => {
 
   const [inputFile,setInputFile] = useState(null)
+
+  const router = useRouter()
   
   return (
     <div className="flex flex-col gap-4">
@@ -24,7 +28,8 @@ const DataInput = ({setJsonFileData}) => {
                 console.log("Finished:", results.data);
                 setJsonFileData(convertToJson(results.data))              }}
             )
-         
+          
+          router.push('/attributes')
         }}>Crunch🚀</button>
 
     </div>
