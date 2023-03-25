@@ -26,8 +26,9 @@ const Home = () => {
 
       <SelectParams inputData={jsonFileData} setSelectedAttributes={setSelectedAttributes}/>
 
-
-      <Chart inputData={jsonFileData} selectedAttributes={selectedAttributes}/>
+      <div className='my-4'>
+        <Chart inputData={jsonFileData} selectedAttributes={selectedAttributes}/>
+      </div>
 
     </div>
   )
