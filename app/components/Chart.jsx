@@ -7,24 +7,32 @@ const Chart = ({inputData}) => {
     inputData = inputData.slice(0,10)
     
     const modifiedInputData = inputData.map((item) =>{
-        return {
-            monthlySalary: item.monthly_salary,
-            fico: item.fico,
+        let keys = Object.keys(item)
+        keys = keys.slice(0,2)
+        const obj = {
+            [keys[0]]: item[keys[0]],
+            [keys[1]]: item[keys[1]],
         }
+        
+        return obj
     })
+    const modifiedObjKeys = Object.keys(modifiedInputData[0])
+    console.log(modifiedObjKeys,"modifiedObjKeys")
 
   return (
     <div className='max-w-[500px]'>
         <h1 className='text-2xl'>Chart</h1>
         <Line data={{
-            labels: modifiedInputData.map((item) => item.monthlySalary),
+            labels: modifiedInputData.map((item) => item[modifiedObjKeys[0]]),
             datasets: [
                 {
-                    label: "FICO",
-                    data: modifiedInputData.map((item) => item.fico),
+                    label: modifiedObjKeys[1],
+                    data: modifiedInputData.map((item) => item[modifiedObjKeys[1]]),
+                    backgroundColor: "rgba(255, 99, 132, 0.2)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1,
+                    pointRadius: 0,
                     fill: false,
-                    backgroundColor: "rgb(255, 99, 132)",
-                    borderColor: "rgba(255, 99, 132, 0.2)",
                 },
             ],
         }}
@@ -34,36 +42,9 @@ const Chart = ({inputData}) => {
                     beginAtZero: true,
                 },
             },
+        }}
+        />
 
-        }} />
-
-
-        {/* <Line data={{
-            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
-            datasets: [
-              {
-                label: "# of Votes",
-                data: [12, 19, 3, 5, 2, 3],
-                fill: false,
-                backgroundColor: "rgb(255, 99, 132)",
-                borderColor: "rgba(255, 99, 132, 0.2)",
-              },
-              {
-                label: "# of No Votes",
-                data: [5, 2, 20, 5, 1, 4],
-                fill: false,
-                backgroundColor: "rgb(54, 162, 235)",
-                borderColor: "rgba(54, 162, 235, 0.2)",
-              },
-            ],
-          }}
-          options={{
-            scales: {
-              y: {
-                beginAtZero: true,
-              },
-            },
-          }} /> */}
     </div>
   )
 }
