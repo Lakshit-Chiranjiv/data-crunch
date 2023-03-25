@@ -2,6 +2,8 @@
 import { useState } from "react"
 import { parse } from "papaparse"
 
+import { convertToJson } from "@/lib/convertToJson"
+
 const DataInput = ({setJsonFileData}) => {
 
   const [inputFile,setInputFile] = useState(null)
@@ -20,8 +22,7 @@ const DataInput = ({setJsonFileData}) => {
           parse(inputFile, {
               complete: function(results) {
                 console.log("Finished:", results.data);
-                setJsonFileData(JSON.parse(results.data))
-              }}
+                setJsonFileData(convertToJson(results.data))              }}
 
             )
          
