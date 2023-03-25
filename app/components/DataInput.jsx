@@ -1,4 +1,11 @@
+"use client" 
+import { useState } from "react"
+
+
 const DataInput = () => {
+
+  const [inputFile,setInputFile] = useState(null)
+
   return (
     <div className="flex flex-col gap-4">
         <h1 className="text-3xl">Input Data File (CSV)</h1>
