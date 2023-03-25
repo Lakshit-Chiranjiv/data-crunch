@@ -4,6 +4,7 @@ import React from 'react'
 import { useState } from 'react'
 import DataInput from './DataInput'
 import Chart from './Chart'
+import SelectParams from './SelectParams'
 const Home = () => {
 
     const [jsonFileData,setJsonFileData] = useState([])
@@ -17,6 +18,8 @@ const Home = () => {
      }}>Check</button>
 
      <Chart inputData={jsonFileData}/>
+
+     <SelectParams inputData={jsonFileData}/>
 
     </div>
   )
