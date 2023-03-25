@@ -4,7 +4,7 @@ import { parse } from "papaparse"
 
 import { convertToJson } from "@/lib/convertToJson"
 
-const DataInput = ({setJsonFileData, setClickedCrunch}) => {
+const DataInput = ({setJsonFileData}) => {
 
   const [inputFile,setInputFile] = useState(null)
   
@@ -24,7 +24,6 @@ const DataInput = ({setJsonFileData, setClickedCrunch}) => {
                 console.log("Finished:", results.data);
                 setJsonFileData(convertToJson(results.data))              }}
             )
-            setClickedCrunch(true)
          
         }}>Crunch🚀</button>
 
