@@ -11,16 +11,17 @@ const Home = () => {
     const [selectedAttributes,setSelectedAttributes] = useState([])
 
   return (
-    <div className='p-8'>
+    <div className='p-8 flex flex-col gap-4'>
      
-     <DataInput setJsonFileData={setJsonFileData} />
-     <button onClick={() =>{
-        console.log(jsonFileData);
-     }}>Check</button>
+      <DataInput setJsonFileData={setJsonFileData} />
+      <button onClick={() =>{
+          console.log(jsonFileData);
+      }}>Check</button>
 
-     <Chart inputData={jsonFileData} selectedAttributes={selectedAttributes}/>
+      <SelectParams inputData={jsonFileData} setSelectedAttributes={setSelectedAttributes}/>
 
-     <SelectParams inputData={jsonFileData} setSelectedAttributes={setSelectedAttributes}/>
+
+      <Chart inputData={jsonFileData} selectedAttributes={selectedAttributes}/>
 
     </div>
   )
