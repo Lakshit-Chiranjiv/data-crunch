@@ -2,8 +2,7 @@
 import { useState } from "react"
 import { parse } from "papaparse"
 
-
-const DataInput = () => {
+const DataInput = ({setJsonFileData}) => {
 
   const [inputFile,setInputFile] = useState(null)
   
@@ -21,9 +20,13 @@ const DataInput = () => {
           parse(inputFile, {
               complete: function(results) {
                 console.log("Finished:", results.data);
+                setJsonFileData(JSON.parse(results.data))
               }}
+
             )
+         
         }}>Crunch🚀</button>
+
     </div>
   )
 }
