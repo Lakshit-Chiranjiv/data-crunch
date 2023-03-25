@@ -17,7 +17,16 @@ const SelectParams = ({inputData}) => {
     <div>
         <h1 className="text-3xl">Select Parameters to plot</h1>
         <div className="flex flex-col gap-4">
-
+            {
+                dataKeys.map((key) => {
+                    return (
+                        <div key={key}>
+                            <input type="checkbox" name={key} id={key} />
+                            <label htmlFor={key}>{key}</label>
+                        </div>
+                    )
+                })
+            }
         </div>
     </div>
   )
