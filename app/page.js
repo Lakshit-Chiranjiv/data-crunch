@@ -3,13 +3,13 @@ import Image from 'next/image'
 import styles from './page.module.css'
 
 // const inter = Inter({ subsets: ['latin'] })
+import Home from './components/Home'
 
-import DataInput from './components/DataInput'
 
-export default function Home() {
+export default function App() {
   return (
     <main className={styles.main}>
-      <DataInput />
+        <Home/> 
     </main>
   )
 }
