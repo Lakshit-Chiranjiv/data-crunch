@@ -5,11 +5,15 @@ import { useState } from "react"
 const DataInput = () => {
 
   const [inputFile,setInputFile] = useState(null)
-
+  
   return (
     <div className="flex flex-col gap-4">
         <h1 className="text-3xl">Input Data File (CSV)</h1>
-        <input type="file" id="file" accept=".csv" className="bg-blue-400 p-4 rounded"/>
+        <input type="file" id="file" accept=".csv" className="bg-blue-400 p-4 rounded" onChange={(e) =>{
+          setInputFile(e.target.files[0]);//input file stored in state
+          
+        }}/>
+
         <br />
         <button className="bg-green-400 rounded px-4 py-2">Crunch🚀</button>
     </div>
